@@ -50,7 +50,7 @@ app.use('/auth', authRouter);
 var apiRouter = require('./routes/api.js');
 app.use('/api', apiRouter);
 
-app.use('/public', express.static(__dirname + '/public'));
+app.use('/', express.static(__dirname + '/public'));
 
 
 
