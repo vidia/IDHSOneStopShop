@@ -31,11 +31,13 @@ Install NODE.js and npm to run.
 $ brew install node
 
 # cd into the project directory 
-$ npm install
+$ npm install # updates all of the dependancies
 
 # Run the server
-$ DEBUG=backend:* ./bin/www
+$ npm start
 ````
+
+NOTE TO SELF: Look into grunt.
 
 ## Remotely
 
