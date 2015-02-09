@@ -14,6 +14,8 @@ All requests are under `/api`
 /api/service
 /api/service/{id}/agency
 
+/api/service/{id}/question # PUT { questions : [ qid ] } to add questions to the array
+
 /api/question
 /api/question/{id}
 

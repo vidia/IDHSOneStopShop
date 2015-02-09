@@ -1,5 +1,6 @@
 var Service = require('../models/service')
 var Agency = require('../models/agency')
+var Question = require('../models/question')
 var express = require("express")
 var router = express.Router();
 
@@ -91,13 +92,15 @@ router.route("/:id/agency").put(function( req, res) {
     }
 
     for(var index = 0; index < req.body.agencies.length ; index++) {
-      var agencyId = req.body.agencies[index]; 
+      var agencyId = req.body.agencies[index];
       Agency.findOne( { _id : agencyId } , function(err, agency) {
         if(err) {
           res.send(err)
         }
         agency.services.push(req.params.id);
         service.agencies.push(agencyId);
+
+        agency.save();
       })
     }
 
@@ -134,6 +137,8 @@ router.route("/:id/agency").post(function( req, res) {
         }
         agency.services.push(req.params.id);
         service.agencies.push(agencyId);
+
+        agency.save();
       })
     }
 
@@ -148,6 +153,76 @@ router.route("/:id/agency").post(function( req, res) {
   })
 })
 
+//Adds the given array of objectids to the service questions
+// Takes :
+// {
+//  questions : [...]
+// }
+router.route("/:id/question").put(function( req, res) {
+  Service.findOne( { _id : req.params.id }, function( err, service) {
+    if(err) {
+      res.send(err)
+    }
 
+    for(var index = 0; index < req.body.questions.length ; index++) {
+      var questionId = req.body.questions[index];
+      Question.findOne( { _id : questionId } , function(err, question) {
+        if(err) {
+          res.send(err)
+        }
+        question.service = req.params.id;
+        service.questions.push(questionId);
+
+        question.save();
+      })
+    }
+
+    //save it
+    service.save( function(err) {
+      if(err) {
+        return res.send(err)
+      }
+
+      res.json( { message : "Questions added" } )
+    })
+  })
+})
+
+//Adds the given array of objectids to the service questions
+// Takes :
+// {
+//  questions : [...]
+// }
+router.route("/:id/question").put(function( req, res) {
+  Service.findOne( { _id : req.params.id }, function( err, service) {
+    if(err) {
+      res.send(err)
+    }
+
+    service.questions = []
+
+    for(var index = 0; index < req.body.questions.length ; index++) {
+      var questionId = req.body.questions[index];
+      Question.findOne( { _id : questionId } , function(err, question) {
+        if(err) {
+          res.send(err)
+        }
+        question.service = req.params.id;
+        service.questions.push(questionId);
+
+        question.save();
+      })
+    }
+
+    //save it
+    service.save( function(err) {
+      if(err) {
+        return res.send(err)
+      }
+
+      res.json( { message : "Questions updated" } )
+    })
+  })
+})
 
 module.exports = router;

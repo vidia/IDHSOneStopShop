@@ -111,6 +111,8 @@ router.route("/:id/service").put(function( req, res) {
         }
         service.agencies.push(req.params.id);
         agency.services.push(serviceId);
+
+        service.save();
       })
     }
 
@@ -148,6 +150,8 @@ router.route("/:id/service").post(function( req, res) {
         }
         service.agencies.push(req.params.id);
         agency.services.push(serviceId);
+
+        service.save();
       })
     }
 
