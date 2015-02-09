@@ -16,7 +16,6 @@
     <script src="js/skel.min.js"></script>
     <script src="js/skel-layers.min.js"></script>
     <script src="js/init.js"></script>
-    <script type="text/javascript" src="js/ejs_production.js"></script>
     <noscript>
       <link rel="stylesheet" href="css/skel.css" />
       <link rel="stylesheet" href="css/style.css" />
@@ -49,8 +48,8 @@
                     <li><a href="https://secure.in.gov/ofbci/">Serve Indiana (SI)</a></li>
                   </ul>
                 </li>
-                <li><a href="agencies_services.html">Agencies by Services</a></li>
-                <li class = "current"><a href="survey.html">Survey</a></li>
+                <li class="current"><a href="agencies_services.html">Agencies by Services</a></li>
+                <li><a href="survey.html">Survey</a></li>
               </ul>
             </nav>
 
@@ -58,30 +57,67 @@
             <section id="banner">
               <header>
                 <h2>Welcome, this is the One Stop Shop.</h2>
-                <p>Please click on the checkbox if your answer
-                is "yes", keep blank otherwise.</p>
+                <p>There are number of State services available to you here.
+                They are ordered by services.</p>
               </header>
             </section>
         </div>
+      </div>
 
-      <!-- content -->
-      <article class = "box post">
-        <header>
-          <h1>Crisis counseling and mental health service</h1>
-        </header>
-        <div id="questions">
-          <script type="text/javascript" src="questions.js"></script>
+    <!-- Main -->
+      <div id="main-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="12u">
+
+              <!-- Portfolio -->
+                <section>
+                  <header class="major">
+                    <h2>All Services</h2>
+                  </header>
+                  <div class="row">
+                    <div class="4u">
+                      <section class="box">
+                        <center><h2>Additional Documentation Needs</h2></center>
+                        <br>
+                        <header>
+                          <ul>
+                            <li><a href="#"><h1>Department of Insurance (DOI)</h3></a>
+                            </li>
+                          </ul>
+                        </header>
+                      </section>
+                    </div>
+                    <div class="4u">
+                      <section class="box">
+                        <center><h2>Bureau of motor vehicles</h2></center>
+                        <br>
+                        <header>
+                          <ul>
+                            <li><a href="#"><h1>Bureau of Motor Vehicles (BMV)</h3></a>
+                            </li>
+                          </ul>
+                        </header>
+                      </section>
+                    </div>
+                    <div class="4u">
+                      <section class="box">
+                        <center><h2>Children's clothing</h2></center>
+                        <br>
+                        <header>
+                          <ul>
+                            <li><a href="#"><h1>Child Services</h3></a>
+                            </li>
+                          </ul>
+                        </header>
+                      </section>
+                    </div>
+                  </div>
+                </section>
+            </div>
+          </div>
         </div>
-      </article>
-      <center>
-        <footer>
-          <ul class = "actions">
-            <li><a class ="button big" href="#" id = "submit">Submit</a></li>
-            <li><a class ="button alt big" href="#" id = "reset">Reset</a></li>
-          </ul>
-        </footer>
-      </center>
-    </div>
+      </div>
 
     <!-- Footer -->
       <div id="footer-wrapper">
@@ -95,11 +131,11 @@
                     <li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
                   </ul>
                 </div>
-
             </div>
           </div>
         </section>
       </div>
-
   </body>
+  <script src = "js/moreDetails.js">
+  </script>
 </html>

@@ -37,7 +37,7 @@
 							<ul>
 								<li class="current"><a href="index.html">Home</a></li>
 								<li>
-									<a href="">Departments</a>
+									<a href="">Agencies by Name</a>
 									<ul>
 										<li><a href="https://secure.in.gov/bmv/">Bureau of Motor Vehicles (BMV)</a></li>
 										<li><a href="https://secure.in.gov/idoi/">Department of Insurance (DOI)</a></li>
@@ -48,6 +48,7 @@
 										<li><a href="https://secure.in.gov/ofbci/">Serve Indiana (SI)</a></li>
 									</ul>
 								</li>
+								<li><a href="agencies_services.html">Agencies by Services</a></li>
 								<li><a href="survey.html">Survey</a></li>
 							</ul>
 						</nav>
@@ -58,7 +59,7 @@
 								<h2>Welcome, this is the One Stop Shop.</h2>
 								<p>There are number of State services available to you here.
 								If you know which one you are familiar with, feel free to click
-								on the image. Otherwise, please answer the questions below to
+								on the image or link provided. Otherwise, please answer the questions below to
 								determine your family needs.</p>
 							</header>
 						</section>
@@ -133,7 +134,18 @@
 												<header>
 													<h3>Department of Insurance (DOI)</h3>
 												</header>
-												<p>We provide on-site interpretation of insurance policies, information...</p>
+												<div id = "shortDOI">
+													We provide on-site interpretation of insurance policies
+												</div>
+												<div id = "longDOI" style="display:none">
+													We provide on-site interpretation of insurance policies,
+													infomration on lost/damaged policies, how to obtain
+													copies of existing policies, and general
+													guidance on navigating the insurance process.
+												</div>
+												<a id = "btn_DOI">
+													more details
+												</a>
 												<footer>
 													<a href="https://secure.in.gov/idoi" class="button alt">Find out more</a>
 												</footer>
@@ -285,11 +297,11 @@
 										<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
 									</ul>
 								</div>
-
 						</div>
 					</div>
 				</section>
 			</div>
-
 	</body>
+	<script src = "js/moreDetails.js">
+	</script>
 </html>
