@@ -8,7 +8,7 @@ var questionTypes = "yn fillin".split(" ");
 var questionSchema = mongoose.Schema({
 
   //has an id
-  text : String,
+  text : {type: String, required: true },
   type  : { type : String, enum : questionTypes },
   service : mongoose.Schema.Types.ObjectId //of ServiceSchema
 

@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var serviceSchema = mongoose.Schema({
 
   //has an id
-  name : String,
+  name : { type: String, required: true },
   agencies : [ mongoose.Schema.Types.ObjectId ], //Of AgencySchema
   questions : [ mongoose.Schema.Types.ObjectId ] // Of Questions
 });

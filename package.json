@@ -22,7 +22,8 @@
     "method-override": "~1.0.0",
     "express-session": "~1.0.0",
 
-    "winston" : "*"
+    "winston" : "*",
+    "underscore" : "*"
 
   }
 }

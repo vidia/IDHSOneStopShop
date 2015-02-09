@@ -1,4 +1,5 @@
 var Service = require('../models/service')
+var Agency = require('../models/agency')
 var express = require("express")
 var router = express.Router();
 
@@ -64,5 +65,89 @@ router.route("/:id").delete(function(req, res) {
     res.json( { message: "Deleted successfully" } )
   });
 });
+
+//-----------------------
+//-- Add/view Agencies --
+//-----------------------
+
+router.route("/:id/agency").get(function(req, res) {
+  Service.findOne( { _id : req.params.id }, function(err, service) {
+    if(err) {
+      res.send(err)
+    }
+    res.json(service.agencies);
+  });
+});
+
+//Adds the given array of objectids to the service agencies
+// Takes :
+// {
+//  agencies : [...]
+// }
+router.route("/:id/agency").put(function( req, res) {
+  Service.findOne( { _id : req.params.id }, function( err, service) {
+    if(err) {
+      res.send(err)
+    }
+
+    for(var index = 0; index < req.body.agencies.length ; index++) {
+      var agencyId = req.body.agencies[index]; 
+      Agency.findOne( { _id : agencyId } , function(err, agency) {
+        if(err) {
+          res.send(err)
+        }
+        agency.services.push(req.params.id);
+        service.agencies.push(agencyId);
+      })
+    }
+
+    //save it
+    service.save( function(err) {
+      if(err) {
+        return res.send(err)
+      }
+
+      res.json( { message : "Agencies added" } )
+    })
+  })
+})
+
+// Replaces the current array with the given array
+// of objectids to the service agencies
+// Takes :
+// {
+//  agencies : [...]
+// }
+router.route("/:id/agency").post(function( req, res) {
+  Service.findOne( { _id : req.params.id }, function( err, service) {
+    if(err) {
+      res.send(err)
+    }
+
+    service.agencies = []
+
+    for(var index = 0; index < req.body.agencies.length ; index++) {
+      var agencyId = req.body.agencies[index];
+      Agency.findOne( { _id : agencyId } , function(err, agency) {
+        if(err) {
+          res.send(err)
+        }
+        agency.services.push(req.params.id);
+        service.agencies.push(agencyId);
+      })
+    }
+
+    //save it
+    service.save( function(err) {
+      if(err) {
+        return res.send(err)
+      }
+
+      res.json( { message : "Agencies updated" } )
+    })
+  })
+})
+
+
 
 module.exports = router;

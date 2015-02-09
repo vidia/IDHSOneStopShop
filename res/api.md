@@ -8,11 +8,15 @@ All requests are under `/api`
 
 ````txt
 /api/agency
-/api/agency/{id}
+/api/agency/{id}/service
+
+
 /api/service
-/api/service/{id}
+/api/service/{id}/agency
+
 /api/question
 /api/question/{id}
+
 /api/survey
 /api/survey/{id}
 ````
