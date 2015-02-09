@@ -14,7 +14,7 @@ module.exports = function(app, passport) {
     app.get('/login', function(req, res) {
 
         // render the page and pass in any flash data if it exists
-        res.render('login.ejs', { message: req.flash('loginMessage') }); 
+        res.render('login.ejs', { message: req.flash('loginMessage') });
     });
 
     // process the login form
@@ -60,12 +60,17 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
+
+
+    // =====================================
+    // Agencies ============================
+    // =====================================
 };
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
