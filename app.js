@@ -44,8 +44,14 @@ require('./config/passport')(passport); // pass passport for configuration
 
 
 // routes ========================================
-require('./routes/routes.js')(app, passport); 
-// load our routes and pass in our app and fully configured passport
+var authRouter = require('./routes/auth.js')(passport);
+app.use('/auth', authRouter);
+
+var apiRouter = require('./routes/api.js');
+app.use('/api', apiRouter);
+
+app.use('/', express.static(__dirname + '/public'));
+
 
 
 // catch 404 and forward to error handler

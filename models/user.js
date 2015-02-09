@@ -2,6 +2,7 @@
 // load the things we need
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
+var Survey   = require('./survey');
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
@@ -9,26 +10,10 @@ var userSchema = mongoose.Schema({
     local            : {
         email        : String,
         password     : String,
-    // },
-    // facebook         : {
-    //     id           : String,
-    //     token        : String,
-    //     email        : String,
-    //     name         : String
-    // },
-    // twitter          : {
-    //     id           : String,
-    //     token        : String,
-    //     displayName  : String,
-    //     username     : String
-    // },
-    // google           : {
-    //     id           : String,
-    //     token        : String,
-    //     email        : String,
-    //     name         : String
-    }
-
+    },
+    name: String,
+    survey: { type: mongoose.Schema.Types.ObjectId, ref: 'Survey' }, //check to make sure this is reffing not creating new
+    code : String
 });
 
 // methods ======================
