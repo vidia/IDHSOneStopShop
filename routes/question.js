@@ -55,7 +55,7 @@ router.route("/:id").get(function(req, res) {
   }
 })
 
-router.route("/:id").get(function(req, res) {
+router.route("/:id").delete(function(req, res) {
 
   Question.remove( { _id: req.params.id }, function(err, question) {
     if(err) {

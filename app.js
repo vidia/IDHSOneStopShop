@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -15,11 +15,15 @@ var configDB = require('./config/database.js');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var wlogger = require('./config/logger');
+
 var app = express();
+
+wlogger.debug("Overriding 'Express' logger");
+app.use(morgan("common", { "stream": wlogger.stream }));
 
 
 mongoose.connect(configDB.url); // connect to our database
-
 
 
 // view engine setup
@@ -28,7 +32,7 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
+//app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -44,7 +48,7 @@ require('./config/passport')(passport); // pass passport for configuration
 
 
 // routes ========================================
-var authRouter = require('./routes/auth.js')(passport);
+var authRouter = require('./routes/auth.js').init(passport);
 app.use('/auth', authRouter);
 
 var apiRouter = require('./routes/api.js');

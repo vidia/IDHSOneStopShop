@@ -1,5 +1,6 @@
 var Agency = require('../models/agency')
 var express = require("express")
+var auth = require("../routes/auth")
 var router = express.Router();
 
 router.route("/").get( function(req, res) {
@@ -46,16 +47,17 @@ router.route("/:id").put(function( req, res) {
 })
 
 router.route("/:id").get(function(req, res) {
-  Agency.findOne( { _id : req.params.id }), function( err, agency) {
+  Agency.findOne( { _id : req.params.id }, function(err, agency) {
     if(err) {
       res.send(err)
     }
 
     res.json(agency);
-  }
-})
+  });
+});
 
-router.route("/:id").get(function(req, res) {
+
+router.route("/:id").delete(function(req, res) {
 
   Agency.remove( { _id: req.params.id }, function(err, agency) {
     if(err) {
