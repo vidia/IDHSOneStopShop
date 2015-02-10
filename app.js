@@ -23,7 +23,7 @@ wlogger.debug("Overriding 'Express' logger");
 app.use(morgan("common", { "stream": wlogger.stream }));
 
 
-mongoose.connect(configDB.url); // connect to our database
+mongoose.connect(configDB.geturl()); // connect to our database
 
 
 // view engine setup
