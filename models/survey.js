@@ -6,10 +6,17 @@ var mongoose = require('mongoose');
 var surveySchema = mongoose.Schema({
 
     user: mongoose.Schema.Types.ObjectId,
-    questions : [ {
-      qid: mongoose.Schema.Types.ObjectId,
-      answer : String
-    } ],
+    survey : [
+      {
+        service: { type: mongoose.Schema.Types.ObjectId, ref: 'Service' },
+        questions: [
+          {
+            question: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' },
+            answer: String
+          }
+        ]
+      }
+    ],
     printed : { type: Boolean, default: false }
 
 });
