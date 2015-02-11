@@ -19,7 +19,7 @@ var logger = require("../config/logger")
 //
 //     res.statusCode = 401;
 //     res.json( { message : "Must be logged on to write to this api" } )
-// 
+//
 //   } else {
 //     return next();
 //   }
