@@ -10,6 +10,8 @@ var agencySchema = mongoose.Schema({
     name : { type: String, required: true },
     url  : String,
     description: String,
+    shortdescription : String,
+    imageUrl : String,
     services : [ mongoose.Schema.Types.ObjectId ] //of ServiceSchema
 });
 
