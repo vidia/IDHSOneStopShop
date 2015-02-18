@@ -17,7 +17,7 @@ function forbidServices(res, req, next) {
 var router = express.Router();
 
 router.route("/").get( function(req, res) {
-  Agency.find( function ( err, agencies ) {
+  Agency.find().populate("services").exec( function ( err, agencies ) {
     if(err) {
       return res.send(err);
     }
@@ -60,7 +60,7 @@ router.route("/:id").put(forbidServices, function( req, res) {
 });
 
 router.route("/:id").get(function(req, res) {
-  Agency.findOne( { _id : req.params.id }, function(err, agency) {
+  Agency.findOne( { _id : req.params.id }).populate("services").exec( function(err, agency) {
     if(err) {
       res.send(err);
     }
@@ -84,7 +84,7 @@ router.route("/:id").delete(function(req, res) {
 //-----------------------
 
 router.route("/:id/service").get(function(req, res) {
-  Agency.findOne( { _id : req.params.id }, function(err, agency) {
+  Agency.findOne( { _id : req.params.id }).populate("services").exec( function(err, agency) {
     if(err) {
       res.send(err);
     }

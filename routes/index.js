@@ -1,5 +1,5 @@
 var express = require('express');
-var Service = require('../models/service');
+var Agency = require('../models/agency');
 var ejs = require('ejs');
 var logger = require('../config/logger');
 var router = express.Router();
@@ -7,20 +7,16 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  Service.find( function ( err, services ) {
+  Agency.find().populate("services").exec( function ( err, agencies ) {
     if(err) {
       return res.send(err);
     }
-
-    //logger.debug( { "services" : services } );
+    //logger.info(agencies);
     res.render("index",
         {
-          services : services
+          agencies : agencies
         }
       );
-
-    //logger.log( page );
-    //res.render(page);
   });
 
 });

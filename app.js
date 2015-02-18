@@ -55,7 +55,7 @@ var apiRouter = require('./routes/api.js');
 app.use('/api', apiRouter);
 
 var indexRouter = require('./routes/index.js');
-app.use('/home', indexRouter);
+app.use('/index.html', indexRouter);
 
 app.use('/', express.static(__dirname + '/public'));
 

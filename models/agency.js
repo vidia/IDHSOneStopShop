@@ -12,7 +12,7 @@ var agencySchema = mongoose.Schema({
     description: String,
     shortdescription : String,
     imageUrl : String,
-    services : [ mongoose.Schema.Types.ObjectId ] //of ServiceSchema
+    services : [ { type: mongoose.Schema.Types.ObjectId, ref: 'Service' } ] //of ServiceSchema
 });
 
 // methods ======================

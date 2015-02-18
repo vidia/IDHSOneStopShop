@@ -24,6 +24,14 @@
 			<link rel="stylesheet" href="css/style-desktop.css" />
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+
+
+		<!-- // <script type="text/javascript">
+		// 	$(document).ready(function() {
+		// 		$(".short-list").shorten({showChars:30});
+		// 	});
+		// </script> -->
+
 	</head>
 	<body class="homepage">
 
@@ -124,38 +132,58 @@
 					<div class="row">
 						<div class="12u">
 
-							<% if (services.length) { %>
+							<% if (agencies.length) { %>
 							<!-- Portfolio -->
 								<section>
 									<header class="major">
 										<h2>All Departments</h2>
 									</header>
-									<% var i = 0; %>
-									<% services.forEach( function(service)  { %>
-										<% i++; %>
-										<% if(i%3 == 0) { %>
-										<div class="row">
 
-										<% } %>
-											<div class="4u">
-												<section class="box">
-													<center><h2><%= service.name %></h2></center>
-													<br>
-													<header>
-														<ul>
-															<% for(var agency in service.agencies) { %>
-															<li class = ".short-list"><a href="#"><h1><%= agency.name %></h3></a>
-															</li>
-															<% } %>
-														</ul>
-													</header>
-												</section>
-											</div>
-										<% if(i%3 == 0) { %>
+									<% for (var i = 0; i < agencies.length; i+=3) { %>
+									<div class="row">
+
+										<% for (var j = 0; j < 3 && i+j < agencies.length; j++) { %>
+										<% var agency = agencies[i+j]; %>
+										<div class="4u">
+											<section class="box">
+
+												<center>
+													<a href="#" class="image responsive">
+														<% if ( agency.imageUrl ) { %>
+														<img src="<%=agency.imageUrl%>" alt="" />
+														<% } else { %>
+														<img src="images/flag.svg" alt="" />
+														<% } %>
+													</a>
+												</center>
+												<header>
+													<center><h2><%= agency.name %></h2></center>
+												</header>
+												<div id = ".short-list">
+													<%= agency.description %>
+												</div>
+												<div id = "services">
+
+													<% if ( agency.services.length > 0 ) { %>
+													<ul>
+														<% agency.services.forEach( function(service) { %>
+															<li><%= service.name %></li>
+														<% }); %>
+													</ul>
+													<% }; %>
+												</div>
+												<a id = "btn">
+													more details
+												</a>
+												<footer>
+													<a href="<%=agency.url%>" class="button alt">Visit our website</a>
+												</footer>
+											</section>
 										</div>
 										<% } %>
 
-									<% }); %>
+									</div>
+									<% } %>
 								<!--
 								<div id = "agencyCol">
 									<script src="../models/agency.js">
