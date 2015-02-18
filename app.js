@@ -39,7 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(session({ secret: 'arbq3v44yvu7wvw^HWwWG4ww$GWGjv&J' })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -55,9 +55,11 @@ var apiRouter = require('./routes/api.js');
 app.use('/api', apiRouter);
 
 var indexRouter = require('./routes/index.js');
-app.use('/index.html', indexRouter);
-
-app.use('/', express.static(__dirname + '/public'));
+app.use('/', indexRouter);
+app.use('/index.html', function(req, res) {
+  res.redirect("/");
+});
+app.use('/.+',  express.static(__dirname + '/public'));
 
 
 // catch 404 and forward to error handler
