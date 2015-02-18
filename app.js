@@ -54,8 +54,10 @@ app.use('/auth', authRouter);
 var apiRouter = require('./routes/api.js');
 app.use('/api', apiRouter);
 
-app.use('/', express.static(__dirname + '/public'));
+var indexRouter = require('./routes/index.js');
+app.use('/home', indexRouter);
 
+app.use('/', express.static(__dirname + '/public'));
 
 
 // catch 404 and forward to error handler

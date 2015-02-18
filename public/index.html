@@ -129,96 +129,30 @@
 									<header class="major">
 										<h2>All Departments</h2>
 									</header>
-									<div class="row">
-										<div class="4u">
-											<section class="box">
-												<center><a href="#" class="image responsive"><img src="images/IndyGov.png" alt="" /></a></center>
-												<header>
-													<h3>Department of Insurance (DOI)</h3>
-												</header>
-												<div id = "shortDOI">
-													We provide on-site interpretation of insurance policies
-												</div>
-												<div id = "longDOI" style="display:none">
-													We provide on-site interpretation of insurance policies,
-													infomration on lost/damaged policies, how to obtain
-													copies of existing policies, and general
-													guidance on navigating the insurance process.
-												</div>
-												<a id = "btn_DOI">
-													more details
-												</a>
-												<footer>
-													<a href="https://secure.in.gov/idoi" class="button alt">Find out more</a>
-												</footer>
-											</section>
+									<% for(var i = 0; i < service.length; i++) {
+										if(i%3 == 0) { %>
+										<div class="row">
+
+										<% } %>
+											<div class="4u">
+												<section class="box">
+													<center><h2><% service.name %></h2></center>
+													<br>
+													<header>
+														<ul>
+															<% for(var agency in service.agencies) { }%>
+															<li class = ".short-list"><a href="#"><h1><% agency %></h3></a>
+															</li>
+															<% } %>
+														</ul>
+													</header>
+												</section>
+											</div>
+										<% if(i%3 == 0) { %>
 										</div>
-										<div class="4u">
-											<section class="box">
-												<center><a href="#" class="image responsive"><img src="images/IndyGov.png" alt="" /></a></center>
-												<header>
-													<h3>Department of Workforce Development (DWD)</h3>
-												</header>
-												<p>Unemployment benefits can be applied for through this agency.</p>
-												<footer>
-													<a href="https://secure.in.gov/dwd/" class="button alt">Find out more</a>
-												</footer>
-											</section>
-										</div>
-										<div class="4u">
-											<section class="box">
-												<center><a href="#" class="image responsive"><img src="images/IndyGov.png" alt="" /></a></center>
-												<header>
-													<h3>Family and Social Services (FSSA)</h3>
-												</header>
-												<p>We offer crisis counseling, replacement
-													food stamps for current recipients who...</p>
-												<footer>
-													<a href="http://www.in.gov/fssa/" class="button alt">Find out more</a>
-												</footer>
-											</section>
-										</div>
-									</div>
-									<div class="row">
-										<div class="4u">
-											<section class="box">
-												<center><a href="#" class="image responsive"><img src="images/IndyGov.png" alt="" /></a></center>
-												<header>
-													<h3>Serve Indiana (SI)</h3>
-												</header>
-												<p>Help direct Hoosiers to existing local community organizations that provide assistance.</p>
-												<footer>
-													<a href="https://secure.in.gov/dhs/" class="button alt">Find out more</a>
-												</footer>
-											</section>
-										</div>
-										<div class="4u">
-											<section class="box">
-												<center><a href="#" class="image responsive"><img src="images/IndyGov.png" alt="" /></a></center>
-												<header>
-													<h3>Indiana Housing and Community Development Authority (IHCDA)</h3>
-												</header>
-												<p>This agency provides rental vouchers and the option for temporary housing.</p>
-												<footer>
-													<a href="https://secure.in.gov/ihcda/index.htm" class="button alt">Find out more</a>
-												</footer>
-											</section>
-										</div>
-										<div class="4u">
-											<section class="box">
-												<center>
-													<a href="#" class="image responsive"><img src="images/IndyGov.png" alt="" /></a>
-												</center>
-												<header>
-													<h3>Indiana State Department of Health (ISDH)</h3>
-												</header>
-												<p>This agency offers clean up and disposal advice and education...</p>
-												<footer>
-													<a href="#" class="button alt">Find out more</a>
-												</footer>
-											</section>
-										</div>
-									</div>
+										<% } %>
+
+									<% } %>
 								<!--
 								<div id = "agencyCol">
 									<script src="../models/agency.js">

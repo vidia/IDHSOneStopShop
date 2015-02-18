@@ -1,8 +1,8 @@
-var Agency = require('../models/agency')
-var Service = require('../models/service')
-var express = require("express")
-var auth = require("../routes/auth")
-var logger = require('../config/logger')
+var Agency = require('../models/agency');
+var Service = require('../models/service');
+var express = require("express");
+var auth = require("../routes/auth");
+var logger = require('../config/logger');
 var _ = require('underscore');
 
 
@@ -31,38 +31,38 @@ router.route("/").post(forbidServices, function(req, res) {
 
   agency.save(function(err) {
     if(err) {
-      return res.send(err)
+      return res.send(err);
     }
 
-    res.send( { message : "Agency added"})
-  })
-})
+    res.send( { message : "Agency added"});
+  });
+});
 
 router.route("/:id").put(forbidServices, function( req, res) {
   Agency.findOne( { _id : req.params.id }, function(err, agency) {
     if(err) {
-      res.send(err)
+      res.send(err);
     }
 
-    for(prop in req.body) {
-      agency[prop] = req.body[prop]
+    for(var prop in req.body) {
+      agency[prop] = req.body[prop];
     }
 
     //save it
     agency.save( function(err) {
       if(err) {
-        return res.send(err)
+        return res.send(err);
       }
 
-      res.json( { message : "Agency updated" } )
-    })
-  })
-})
+      res.json( { message : "Agency updated" } );
+    });
+  });
+});
 
 router.route("/:id").get(function(req, res) {
   Agency.findOne( { _id : req.params.id }, function(err, agency) {
     if(err) {
-      res.send(err)
+      res.send(err);
     }
     res.json(agency);
   });
@@ -75,7 +75,7 @@ router.route("/:id").delete(function(req, res) {
     if(err) {
       return res.send(err);
     }
-    res.json( { message: "Deleted successfully" } )
+    res.json( { message: "Deleted successfully" } );
   });
 });
 
@@ -86,7 +86,7 @@ router.route("/:id").delete(function(req, res) {
 router.route("/:id/service").get(function(req, res) {
   Agency.findOne( { _id : req.params.id }, function(err, agency) {
     if(err) {
-      res.send(err)
+      res.send(err);
     }
     res.json(agency.services);
   });
@@ -100,32 +100,32 @@ router.route("/:id/service").get(function(req, res) {
 router.route("/:id/service").put(function( req, res) {
   Agency.findOne( { _id : req.params.id }, function(err, agency) {
     if(err) {
-      res.send(err)
+      res.send(err);
     }
 
     for(var index = 0; index < req.body.services.length ; index++) {
       var serviceId = req.body.services[index];
       Service.findOne( { _id : serviceId } , function(err, service) {
         if(err) {
-          res.send(err)
+          res.send(err);
         }
         service.agencies.push(req.params.id);
         agency.services.push(serviceId);
 
         service.save();
-      })
+      });
     }
 
     //save it
     agency.save( function(err) {
       if(err) {
-        return res.send(err)
+        return res.send(err);
       }
 
-      res.json( { message : "Services added" } )
-    })
-  })
-})
+      res.json( { message : "Services added" } );
+    });
+  });
+});
 
 // Replaces the current array with the given array
 // of objectids to the agency services
@@ -136,7 +136,7 @@ router.route("/:id/service").put(function( req, res) {
 router.route("/:id/service").post(function( req, res) {
   Agency.findOne( { _id : req.params.id }, function(err, agency) {
     if(err) {
-      res.send(err)
+      res.send(err);
     }
 
     agency.services = [];
@@ -146,25 +146,25 @@ router.route("/:id/service").post(function( req, res) {
       Service.findOne( { _id : serviceId } , function(err, service) {
 
         if(err) {
-          res.send(err)
+          res.send(err);
         }
         service.agencies.push(req.params.id);
         agency.services.push(serviceId);
 
         service.save();
-      })
+      });
     }
 
     //save it
     agency.save( function(err) {
       if(err) {
-        return res.send(err)
+        return res.send(err);
       }
 
-      res.json( { message : "Services updated" } )
-    })
-  })
-})
+      res.json( { message : "Services updated" } );
+    });
+  });
+});
 
 
 
