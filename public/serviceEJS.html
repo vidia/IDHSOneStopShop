@@ -1,0 +1,30 @@
+<% for(var i = 0; i < service.length; i++) {
+  if(i%3 == 0) { %>
+  <div class="row">
+
+  <% } %>
+    <div class="4u">
+      <section class="box">
+        <center><h2><% service.name %></h2></center>
+        <br>
+        <header>
+          <ul>
+            <% for(var agency in service.agencies) { }%>
+            <li class = ".short-list"><a href="#"><h1><% agency %></h3></a>
+            </li>
+            <% } %>
+          </ul>
+        </header>
+      </section>
+    </div>
+  <% if(i%3 == 0) { %>
+  </div>
+  <% } %>
+
+<% } %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".short-list").shorten({showChars:30});
+  });
+</script>
