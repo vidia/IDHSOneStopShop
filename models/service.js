@@ -7,8 +7,8 @@ var serviceSchema = mongoose.Schema({
 
   //has an id
   name : { type: String, required: true },
-  agencies : [ mongoose.Schema.Types.ObjectId ], //Of AgencySchema
-  questions : [ mongoose.Schema.Types.ObjectId ] // Of Questions
+  agencies : [ { type: mongoose.Schema.Types.ObjectId, ref: 'Agency' } ], //Of AgencySchema
+  questions : [ { type: mongoose.Schema.Types.ObjectId, ref: 'Question' } ] // Of Questions
 });
 
 // methods ======================

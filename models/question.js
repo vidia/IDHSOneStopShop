@@ -10,7 +10,7 @@ var questionSchema = mongoose.Schema({
   //has an id
   text : {type: String, required: true },
   type  : { type : String, enum : questionTypes },
-  service : mongoose.Schema.Types.ObjectId //of ServiceSchema
+  service : { type: mongoose.Schema.Types.ObjectId, ref: 'Service' }  //of ServiceSchema
 
 });
 
