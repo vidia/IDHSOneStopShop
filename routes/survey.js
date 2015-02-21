@@ -4,9 +4,9 @@ var Question = require('../models/question');
 var User = require('../models/user');
 var Survey = require('../models/survey');
 var express = require("express");
-var auth = require("../routes/auth");
 var logger = require('../config/logger');
-var _ = require('underscore');
+
+var ejs = require('ejs');
 
 var router = express.Router();
 
@@ -44,7 +44,17 @@ router.route("/").get( function(req, res, err) {
 
     //TODO: Add user code.
     Survey.deepPopulate(survey, 'user survey.service survey.questions.question', function(err, survey) {
-      res.send(survey);
+
+      if(req.query.format === "json") {
+        res.send(survey);
+      } else {
+        //logger.debug(agencies);
+        res.render("survey",
+          {
+            survey : survey
+          }
+        );
+      }
     });
   });
 });

@@ -17,8 +17,13 @@ gulp.task('browserify', function () {
     .pipe(gulp.dest('./public/dist'));
 });
 
+gulp.task('uglify', function() {
+  return gulp.src(['./public/dist/*.js'])
+    .pipe(uglify());
+});
+
 gulp.task('nodemon', function () {
-  nodemon({ script: 'app.js', ext: 'js', ignore: ['./src/*.js'] });
+  nodemon({ script: './bin/www', ext: 'js', ignore: ['./src/*.js'] });
 });
 
 gulp.task('watch', function() {
@@ -26,3 +31,4 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['browserify', 'nodemon', 'watch']);
+gulp.task('heroku:production', ['browserify', ]);

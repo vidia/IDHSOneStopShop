@@ -59,6 +59,14 @@ app.use('/', indexRouter);
 app.use('/index.html', function(req, res) {
   res.redirect("/");
 });
+
+var surveyRouter = require('./routes/survey.js');
+app.use('/survey', surveyRouter);
+app.use('/survey.html', function(req, res) {
+  res.redirect("/survey");
+});
+
+
 app.use('/.+',  express.static(__dirname + '/public'));
 
 
