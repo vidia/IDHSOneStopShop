@@ -8,9 +8,8 @@ var agencySchema = mongoose.Schema({
 
     //has an id
     name : { type: String, required: true },
-    url  : String,
-    description: String,
-    shortdescription : String,
+    url  : { type: String, required: true },
+    description: { type: String, required: true },
     imageUrl : String,
     services : [ { type: mongoose.Schema.Types.ObjectId, ref: 'Service' } ] //of ServiceSchema
 });
