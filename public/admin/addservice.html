@@ -95,6 +95,10 @@
                         </button>
                       </span>
                     </div><!-- /input-group -->
+                    <br>
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Type">
+                    </div>
                 </div>
               </div>
 
@@ -206,7 +210,7 @@
     });
     function addQuest() {
       var newQ = document.getElementById('newQuestion');
-      newQ.innerHTML += '<br><div class="form-group"> <div class="input-group"> <input type="text" class="form-control" placeholder="Question"> <span class="input-group-btn"> <button class="btn btn-default" type="button" onClick="addQuest();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button> </span> </div><!-- /input-group --> </div>';
+      newQ.innerHTML += '<br><div class="form-group"> <div class="input-group"> <input type="text" class="form-control" placeholder="Question"> <span class="input-group-btn"> <button class="btn btn-default" type="button" onClick="addQuest();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button> </span> </div><!-- /input-group --><br><div class="form-group"><input type="text" class="form-control" placeholder="Type"></div></div>';
     }
     </script>
   </body>
