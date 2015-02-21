@@ -307,7 +307,7 @@
 			display: inline-block;
 			text-decoration: none;
 			cursor: pointer;
-			border: 0;
+			border: 2;
 			border-radius: 5px;
 			background: #d52349;
 			color: #fff !important;
@@ -319,7 +319,6 @@
 			-ms-transition: background-color .25s ease-in-out;
 			transition: background-color .25s ease-in-out;
 		}
-
 			input[type="button"]:hover,
 			input[type="submit"]:hover,
 			input[type="reset"]:hover,
@@ -333,7 +332,7 @@
 			input[type="reset"]:active,
 			.button:active
 			{
-				background: #c51349;
+				background: #5cb85c;
 			}
 
 			input[type="button"].alt,
@@ -357,7 +356,7 @@
 				input[type="reset"].alt:active,
 				.button.alt:active
 				{
-					background: #151112;
+					background: #00ff00;
 				}
 
 			.button.icon
