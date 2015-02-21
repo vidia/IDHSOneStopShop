@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var auth = require("./auth");
-var logger = require("../config/logger")
+var logger = require("../config/logger");
 
 
 //NOTE: Do not auth the survey POST
@@ -28,6 +28,6 @@ var logger = require("../config/logger")
 router.use( "/agency", require('./agency.js'));
 router.use( "/question", require("./question.js"));
 router.use( "/service", require("./service.js"));
-// router.use( "/survey", require("./survey.js"));
+router.use( "/survey", require("./survey.js"));
 
 module.exports = router;
