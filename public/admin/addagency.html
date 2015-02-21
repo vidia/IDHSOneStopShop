@@ -47,6 +47,7 @@
             <li><a href="agencies.html">Agencies</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="survey.html">Survey</a></li>
+            <li><a href="updates.html">Updates</a></li>
           </ul>
         </div>
       </div>
@@ -60,6 +61,7 @@
             <li class="active"><a href="agencies.html">Agencies <span class="sr-only">(current)</span></a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="survey.html">Survey</a></li>
+            <li><a href="updates.html">Updates</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -74,7 +76,7 @@
                 <input type="text" class="form-control" placeholder="URL">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Description">
+                <textarea type="text" class="form-control" placeholder="Description"></textarea>
               </div>
               <center>
                 <select id="services" multiple = "multiple">
@@ -95,11 +97,36 @@
                 <div class="form-group">
                   <input type="text" class="form-control" placeholder="Name">
                 </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="URL">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Description">
+                <center>
+                <select id="questions" multiple = "multiple">
+                  <option value="1-1">Option 1.1</option>
+                  <option value="1-2">Option 1.2</option>
+                  <option value="1-3">Option 1.3</option>
+                  <option value="1-4">Option 1.4</option>
+                  <option value="1-5">Option 1.5</option>
+                  <option value="1-6">Option 1.6</option>
+                  <option value="1-7">Option 1.7</option>
+                  <option value="1-8">Option 1.8</option>
+                  <option value="1-9">New Question</option>
+                </select>
+                </center>
+                <br>
+                <div id = "newQuestion" style="display:none">
+                  <br>
+                  <div class="form-group">
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Question">
+                        <span class="input-group-btn">
+                          <button class="btn btn-default" type="button" onClick="addQuest();">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                          </button>
+                        </span>
+                      </div><!-- /input-group -->
+                      <br>
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Type">
+                      </div>
+                  </div>
                 </div>
               </div>
               <br><br>
@@ -147,7 +174,45 @@
           maxHeight: 100
           //enableClickableOptGroups: true
       });
+      $('#questions').multiselect({
+          buttonText: function(options, select) {
+            if(options.length === 0) {
+              $("#newQuestion").hide();
+              return 'No Question selected';
+            }
+            else {
+                var labels = [];
+                options.each(function() {
+                    if ($(this).attr('label') !== undefined) {
+                        labels.push($(this).attr('label'));
+                    }
+                    else {
+                        labels.push($(this).html());
+                    }
+                });
+                if(labels.indexOf("New Question") != -1) {
+                  //console.log("IN!");
+                  $("#newQuestion").show();
+                }
+                else {
+                  $("#newQuestion").hide();
+                }
+
+                if(options.length > 3) {
+                  return "Multiple Questions selected";
+                }
+                return labels.join(', ');
+            }
+          },
+          dropRight: true,
+          maxHeight: 100
+          //enableClickableOptGroups: true
+      });
     });
+    function addQuest() {
+      var newQ = document.getElementById('newQuestion');
+      newQ.innerHTML += '<br><div class="form-group"> <div class="input-group"> <input type="text" class="form-control" placeholder="Question"> <span class="input-group-btn"> <button class="btn btn-default" type="button" onClick="addQuest();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button> </span> </div><!-- /input-group --><br><div class="form-group"><input type="text" class="form-control" placeholder="Type"></div></div>';
+    }
     </script>
   </body>
 </html>

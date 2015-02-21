@@ -47,6 +47,7 @@
             <li><a href="agencies.html">Agencies</a></li>
             <li><a href="services.html">Services</a></li>
             <li><a href="survey.html">Survey</a></li>
+            <li><a href="updates.html">Updates</a></li>
           </ul>
         </div>
       </div>
@@ -58,9 +59,10 @@
           <ul class="nav nav-sidebar">
             <li><a href="dashboard.html">Dashboard</a></li>
             <li><a href="agencies.html">Agencies</a></li>
-            <li><a href="service.html">Service</a></li>
+            <li><a href="services.html">Service</a></li>
             <li class="active"><a href="survey.html">Survey <span class="sr-only">(current)</span></a></li>
-          </ul>
+            <li><a href="updates.html">Updates</a></li>
+            </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
@@ -80,10 +82,10 @@
                       </span>
                     </div><!-- /input-group -->
                 </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Type">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Type">
             </div>
             <center>
               <select id="services" multiple = "multiple">
@@ -108,7 +110,7 @@
                 <input type="text" class="form-control" placeholder="URL">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Description">
+                <textarea type="text" class="form-control" placeholder="Description"></textarea>
               </div>
               <br>
               <center>
@@ -134,7 +136,7 @@
                   <input type="text" class="form-control" placeholder="URL">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Description">
+                  <textarea type="text" class="form-control" placeholder="Description"></textarea>
                 </div>
               </div>
             </div>
@@ -254,7 +256,7 @@
     });
     function addQuest() {
       var newQ = document.getElementById('newQuestion');
-      newQ.innerHTML += '<div class="form-group"> <div class="input-group"> <input type="text" class="form-control" placeholder="Question"> <span class="input-group-btn"> <button class="btn btn-default" type="button" onClick="addQuest();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button> </span> </div><!-- /input-group --> </div>';
+      newQ.innerHTML += '<br><div class="form-group"> <div class="input-group"> <input type="text" class="form-control" placeholder="Question"> <span class="input-group-btn"> <button class="btn btn-default" type="button" onClick="addQuest();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button> </span> </div><!-- /input-group --><br><div class="form-group"><input type="text" class="form-control" placeholder="Type"></div></div>';
     }
     </script>
   </body>

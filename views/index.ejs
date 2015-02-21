@@ -11,26 +11,19 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+
 		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.js"></script>
 		<script src="js/jquery.dropotron.min.js"></script>
 		<script src="js/skel.min.js"></script>
 		<script src="js/skel-layers.min.js"></script>
 		<script src="js/init.js"></script>
-		<script src="http://code.jquery.com/jquery.latest.js"></script>
-		<script src="js/jquery.shorten.js"> </script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
 			<link rel="stylesheet" href="css/style-desktop.css" />
 		</noscript>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-
-
-		<!-- // <script type="text/javascript">
-		// 	$(document).ready(function() {
-		// 		$(".short-list").shorten({showChars:30});
-		// 	});
-		// </script> -->
 
 	</head>
 	<body class="homepage">
@@ -49,16 +42,12 @@
 								<li>
 									<a href="">Agencies by Name</a>
 									<ul>
-										<li><a href="https://secure.in.gov/bmv/">Bureau of Motor Vehicles (BMV)</a></li>
-										<li><a href="https://secure.in.gov/idoi/">Department of Insurance (DOI)</a></li>
-										<li><a href="https://secure.in.gov/dwd/">Department of Workforce Development (DWD)</a></li>
-										<li><a href="https://secure.in.gov/fssa/">Family and Social Services (FSSA)</a></li>
-										<li><a href="https://secure.in.gov/ihcda/">Indiana Housing and Community Development Authority (IHCDA)</a></li>
-										<li><a href="https://secure.in.gov/isdh/">Indiana State Department of Health (ISDH)</a></li>
-										<li><a href="https://secure.in.gov/ofbci/">Serve Indiana (SI)</a></li>
+										<% for (var i = 0; i < agencies.length; i++) { %>
+										<% var agency = agencies[i]; %>
+										<li><a href="<%= agency.url%>"><%= agency.name %></a></li>
+										<% } %>
 									</ul>
 								</li>
-								<li><a href="agencies_services.html">Agencies by Services</a></li>
 								<li><a href="survey.html">Survey</a></li>
 							</ul>
 						</nav>
@@ -83,12 +72,6 @@
 										<header>
 											<h2>Indiana Department of Homeland Security</h2>
 										</header>
-										<!--
-										<p>IDHS will provide statewide leadership, exemplary sutomer service,
-										and subject matter expertise for the enhacement of public and private
-										partnerships and the assurance of local, state and federal collaboration
-										to continually develop Indiana's public safety capabilities for the
-										wellbeing and protection of our citizens, property and economy.</p>-->
 									</section>
 								</div>
 								<div class="4u">
@@ -97,9 +80,6 @@
 										<header>
 											<h2>Indiana Goverment</h2>
 										</header>
-										<!--
-										<p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
-										-->
 									</section>
 								</div>
 								<div class="4u">
@@ -108,21 +88,15 @@
 										<header>
 											<h2>Bureau of Motor Vehicles</h2>
 										</header>
-										<!--
-										<p>All BMV transactions can be completed,
-											including replacement driver’s license, identification card, titles, registrations or license plates.</p>
-										-->
 									</section>
 								</div>
 							</div>
 							<footer>
 								<ul class="actions">
 									<li><a href="survey.html" class="button big">Survey</a></li>
-									<!-- <li><a href="#" class="button alt big">Learn More</a></li> -->
 								</ul>
 							</footer>
 						</section>
-
 				</div>
 			</div>
 
@@ -159,9 +133,19 @@
 												<header>
 													<center><h2><%= agency.name %></h2></center>
 												</header>
-												<div id = ".short-list">
-													<%= agency.description %>
+												<div id = "divshort_<%= agency.id%>" >
+													<%= agency.short %>
+													<a OnClick="btnShortDescription('<%= agency.id%>');">
+														[+]
+													</a>
 												</div>
+												<div id = "divfull_<%= agency.id%>" style="display:none">
+													<%= agency.description %>
+													<a OnClick="btnFullDescription('<%= agency.id%>');">
+														[-]
+													</a>
+												</div>
+
 												<div id = "services">
 
 													<% if ( agency.services.length > 0 ) { %>
@@ -172,9 +156,6 @@
 													</ul>
 													<% }; %>
 												</div>
-												<a id = "btn">
-													more details
-												</a>
 												<footer>
 													<a href="<%=agency.url%>" class="button alt">Visit our website</a>
 												</footer>
@@ -184,15 +165,8 @@
 
 									</div>
 									<% } %>
-								<!--
-								<div id = "agencyCol">
-									<script src="../models/agency.js">
-									</script>
-								</div>
-								-->
 								</section>
 								<% } %>
-
 						</div>
 					</div>
 				</div>
@@ -205,33 +179,13 @@
 						<div class="8u">
 							<section>
 								<header>
-									<h2>Blandit nisl adipiscing</h2>
+									<h2>News</h2>
 								</header>
 								<ul class="dates">
 									<li>
 										<span class="date">Jan <strong>27</strong></span>
 										<h3><a href="#">Lorem dolor sit amet veroeros</a></h3>
 										<p>Ipsum dolor sit amet veroeros consequat blandit ipsum phasellus lorem consequat etiam.</p>
-									</li>
-									<li>
-										<span class="date">Jan <strong>23</strong></span>
-										<h3><a href="#">Ipsum sed blandit nisl consequat</a></h3>
-										<p>Blandit phasellus lorem ipsum dolor tempor sapien tortor hendrerit adipiscing feugiat lorem.</p>
-									</li>
-									<li>
-										<span class="date">Jan <strong>15</strong></span>
-										<h3><a href="#">Magna tempus lorem feugiat</a></h3>
-										<p>Dolore consequat sed phasellus lorem sed etiam nullam dolor etiam sed amet sit consequat.</p>
-									</li>
-									<li>
-										<span class="date">Jan <strong>12</strong></span>
-										<h3><a href="#">Dolore tempus ipsum feugiat nulla</a></h3>
-										<p>Feugiat lorem dolor sed nullam tempus lorem ipsum dolor sit amet nullam consequat.</p>
-									</li>
-									<li>
-										<span class="date">Jan <strong>10</strong></span>
-										<h3><a href="#">Blandit tempus aliquam?</a></h3>
-										<p>Feugiat sed tempus blandit tempus adipiscing nisl lorem ipsum dolor sit amet dolore.</p>
 									</li>
 								</ul>
 							</section>
@@ -267,7 +221,17 @@
 					</div>
 				</section>
 			</div>
+			<script>
+				function btnShortDescription(agencyID) {
+					//console.log(agencyName);
+					$("#divshort_"+agencyID).toggle();
+					$("#divfull_"+agencyID).toggle();
+				}
+				function btnFullDescription(agencyID) {
+					//console.log(agencyName);
+					$("#divshort_"+agencyID).toggle();
+					$("#divfull_"+agencyID).toggle();
+				}
+			</script>
 	</body>
-	<script src = "js/moreDetails.js">
-	</script>
 </html>
