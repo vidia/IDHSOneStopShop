@@ -34,7 +34,7 @@ $ brew install node
 $ npm install # updates all of the dependancies
 
 # Run the server. (If grunt is not global, run from node_modules)
-$ grunt
+$ gulp
 ````
 
 NOTE TO SELF: Look into grunt.
@@ -45,4 +45,4 @@ I will load this onto Heroku or something soon, including a server instance of m
 
 # browserify
 
-This project uses b-ify. Any js files in /src will be compiled to /public/dist with `grunt`. They can then be used on the browser end as if they were in node. 
+This project uses b-ify. Any js files in /src will be compiled to /public/dist with `gulp`. They can then be used on the browser end as if they were in node. 
