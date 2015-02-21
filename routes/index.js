@@ -12,6 +12,11 @@ router.get('/', function(req, res, next) {
       return res.send(err);
     }
     //logger.info(agencies);
+    agencies.forEach(function(agency) {
+      agency.shortDescription = agency.description.substring(0, 30) + "...";
+    });
+
+    //logger.debug(agencies);
     res.render("index",
         {
           agencies : agencies
