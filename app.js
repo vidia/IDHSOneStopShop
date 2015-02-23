@@ -60,7 +60,7 @@ app.use('/index.html', function(req, res) {
   res.redirect("/");
 });
 
-var surveyRouter = require('./routes/survey.js');
+var surveyRouter = require('./routes/survey.js').survey;
 app.use('/survey', surveyRouter);
 app.use('/survey.html', function(req, res) {
   res.redirect("/survey");

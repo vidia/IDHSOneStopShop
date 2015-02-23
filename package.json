@@ -22,7 +22,8 @@
     "express-session": "~1.0.0",
     "winston": "*",
     "underscore": "*",
-    "mongoose-deep-populate": "*"
+    "mongoose-deep-populate": "*",
+    "async": "*"
   },
   "engines": {
     "node": "0.10.x",

@@ -22,7 +22,7 @@ var surveyEntrySchema = mongoose.Schema({
 
 var surveySchema = mongoose.Schema({
 
-    user: mongoose.Schema.Types.ObjectId,
+    surveyid : Number,
     survey : [ surveyEntrySchema ],
     printed : { type: Boolean, default: false }
 
