@@ -3,7 +3,7 @@ var express = require("express")
 var router = express.Router();
 
 router.route("/").get( function(req, res) {
-  Question.find( function ( err, questions ) {
+  Question.find().populate("service").exec( function ( err, questions ) {
     if(err) {
       return res.send(err);
     }
@@ -46,14 +46,15 @@ router.route("/:id").put(function( req, res) {
 })
 
 router.route("/:id").get(function(req, res) {
-  Question.findOne( { _id : req.params.id }), function( err, question) {
-    if(err) {
-      res.send(err)
-    }
+  Question.findOne( { _id : req.params.id }).populate("service").exec( function( err, question) {
+      if(err) {
+        res.send(err);
+      }
 
-    res.json(question);
-  }
-})
+      res.json(question);
+    }
+  );
+});
 
 router.route("/:id").delete(function(req, res) {
 

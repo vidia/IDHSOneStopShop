@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="SurveyApp">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,9 +15,12 @@
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.js"></script>
+    <script src="/admin/js/questionApp.js"></script>
+
   </head>
 
-  <body>
+  <body ng-controller="surveyCtrl">
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
@@ -67,18 +70,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
+                <tr ng-repeat="question in questions">
+                  <td>{{ question.text }}</td>
+                  <td>{{ question.type }}</td>
+                  <td>{{ question.service.name }}</td>
                   <td><a href ="#edit" data-toggle="modal"><button type="button" class="btn btn-lg btn-primary">Edit</button></td></a>
                 </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td><a href ="#edit" data-toggle="modal"><button type="button" class="btn btn-lg btn-primary">Edit</button></td></a>
-                </tr>
+
               </tbody>
             </table>
             <a href="addquestion.html"><button type="button" class="btn btn-lg btn-success">New Question</button></a>
@@ -115,6 +113,5 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/docs.min.js"></script>
   </body>
 </html>
