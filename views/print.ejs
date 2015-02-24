@@ -19,28 +19,8 @@
 
   <body>
     <div class="container">
-      <h1><%= survey.surveyid%></h1>
+      <h1>Feature Currently unavailable</h1>
       <hr>
-      <!-- Loop this -->
-      <section class = "box">
-        <% for (var i = 0; i < survey.survey.length; i++) { %>
-        <% var section = survey.survey[i]; %>
-
-        <!-- content -->
-        <div id="<%= section.service.name %>">
-          <h2><%= section.service.name %></h2>
-          <% for (var v = 0; v < section.questions.length; v++) { %>
-          <% var questionItem = section.questions[v] %>
-            <h3><%= v+1 %>. <%= questionItem.question.text %></h3>
-
-            <button type="button" class="btn btn-success">
-            <%= questionItem.answer%>
-            </button>
-          <% } %>
-          <br><br>
-        </div>
-        <% } %>
-      </section>
     </div>
 
     <!-- Bootstrap core JavaScript
