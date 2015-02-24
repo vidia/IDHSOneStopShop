@@ -66,6 +66,8 @@ app.use('/survey.html', function(req, res) {
   res.redirect("/survey");
 });
 
+var printRouter = require('./routes/print.js');
+app.use('/print', printRouter);
 
 app.use('/.+',  express.static(__dirname + '/public'));
 
