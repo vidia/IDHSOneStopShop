@@ -1,4 +1,5 @@
 var app = angular.module('AdminApp', []);
+var surveyApp = angular.module('SurveyApp', []);
 
 
 
@@ -66,6 +67,13 @@ app.factory('Surveys', function ($http) {
     });
   };
 
+  surveyApi.postSurvey = function(_id, survey) {
+    return $http({
+      method: "POST",
+      url: "/api/survey/" + _id
+    });
+  };
+
   return surveyApi;
 
 });
@@ -101,8 +109,6 @@ app.controller('surveyCtrl', function($scope, Questions) {
 
 });
 
-
-
 app.controller('agencyCtrl', function($scope, Agencies) {
 
   Agencies.getAgencies().success(function(response) {
@@ -119,11 +125,19 @@ app.controller('addAgencyCtrl', function($scope, Agencies) {
 
 });
 
-
 app.controller('serviceCtrl', function($scope, Services) {
 
   Services.getServices().success(function(response) {
     $scope.services = response;
   });
 
+});
+
+
+surveyApp.controller('surveyControl', function($scope, Surveys) {
+  $scope.postSurvey = function(survey_id, survey) {
+    Surveys.postSurvey(survey_id, survey).success(function(response) {
+      $scope.result = "Your survey was submitted successfully";
+    });
+  };
 });
