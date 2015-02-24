@@ -141,3 +141,20 @@ surveyApp.controller('surveyControl', function($scope, Surveys) {
     });
   };
 });
+
+surveyApp.controller('ButtonsCtrl', function ($scope) {
+  $scope.checkModel = {
+    yes: true,
+    no: false
+  };
+
+  $scope.singleModel = 1;
+
+  $scope.radioModel = 'Middle';
+
+  $scope.checkModel = {
+    left: false,
+    middle: true,
+    right: false
+  };
+});

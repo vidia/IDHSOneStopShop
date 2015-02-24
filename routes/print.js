@@ -14,7 +14,7 @@ var router = express.Router();
 router.route("/:id").get( function(req, res, err) {
   //Use query params to get a specific survey?
   logger.info("Routing with ID");
-  
+
   Survey.find( {_id : req.params.id}, function(err, survey) {
     if(err) {
       res.send("Survey does not exist");
@@ -23,6 +23,7 @@ router.route("/:id").get( function(req, res, err) {
     //TODO: Add user code.
     Survey.deepPopulate(survey, 'user survey.service survey.questions.question', function(err, survey) {
 
+        logger.info(typeof(survey)); 
 
         //logger.debug(agencies);
         res.render("print",
