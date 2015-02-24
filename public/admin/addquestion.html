@@ -10,7 +10,6 @@
     <title>Administrator Dashboard</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-example.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/prettify.css" rel="stylesheet">
 
@@ -20,6 +19,9 @@
 
     <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
     <link href="css/bootstrap-multiselect.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.js"></script>
+    <script src="/admin/js/app.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -73,34 +75,26 @@
               <div id = "newQuestion">
                 <br>
                 <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Question">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" onClick="addQuest();">
-                          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        </button>
-                      </span>
-                    </div><!-- /input-group -->
+                    <input type="text" class="form-control" placeholder="Question">
+
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Type">
                 </div>
               </div>
             </div>
-            <center>
-              <select id="services" multiple = "multiple">
-                <option value="1-1">Option 1.1</option>
-                <option value="1-2">Option 1.2</option>
-                <option value="1-3">Option 1.3</option>
-                <option value="1-4">Option 1.4</option>
-                <option value="1-5">Option 1.5</option>
-                <option value="1-6">Option 1.6</option>
-                <option value="1-7">Option 1.7</option>
-                <option value="1-8">Option 1.8</option>
-                <option value="1-9">New Service</option>
-              </select>
-              <!-- <button type ="reset" id ="btn-reset" class="btn btn-default">Reset</button> -->
-            </center>
+            <div ng-app="AdminApp">
+              <div ng-controller="serviceCtrl">
+              <h3>Services: </h3>
+                  <!-- {{services}} -->
+                  <div class="checkbox" ng-repeat="service in services">
+                    <label>
+                      <input type="radio" id="{{service._id}}"> {{service.name}}
+                    </label>
+                  </div>
+                <!-- <button type ="reset" id ="btn-reset" class="btn btn-default">Reset</button> -->
+              </div>
+            </div>
             <div id = "newService" style="display:none">
               <br>
               <div class="form-group">

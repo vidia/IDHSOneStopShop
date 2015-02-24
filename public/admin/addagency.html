@@ -10,7 +10,6 @@
     <title>Administrator Dashboard</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-example.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
     <link href="css/prettify.css" rel="stylesheet">
 
@@ -20,6 +19,9 @@
 
     <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
     <link href="css/bootstrap-multiselect.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.js"></script>
+    <script src="/admin/js/app.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -64,72 +66,34 @@
             <li><a href="updates.html">Updates</a></li>
           </ul>
         </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="AdminApp">
 
           <h1 class="page-header">Agencies</h1>
-          <div class="col-md-4">
+          <div class="col-md-4" ng-controller="addAgencyCtrl">
             <form class="form-signin">
               <div class="form-group">
-                <input id = "agencyDiv" type="text" class="form-control" placeholder="Name">
+                <input id = "agencyDiv" type="text" class="form-control" placeholder="Name" ng-model="agency.name">
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="URL">
+                <input type="text" class="form-control" placeholder="URL" ng-model="agency.url">
               </div>
               <div class="form-group">
-                <textarea type="text" class="form-control" placeholder="Description"></textarea>
+                <textarea type="text" class="form-control" placeholder="Description" ng-model="agency.description"></textarea>
               </div>
-              <center>
-                <select id="services" multiple = "multiple">
-                  <option value="1-1">Option 1.1</option>
-                  <option value="1-2">Option 1.2</option>
-                  <option value="1-3">Option 1.3</option>
-                  <option value="1-4">Option 1.4</option>
-                  <option value="1-5">Option 1.5</option>
-                  <option value="1-6">Option 1.6</option>
-                  <option value="1-7">Option 1.7</option>
-                  <option value="1-8">Option 1.8</option>
-                  <option value="1-9">New Service</option>
-                </select>
-              <!-- <button type ="reset" id ="btn-reset" class="btn btn-default">Reset</button> -->
-              </center>
-              <div id = "newService" style="display:none">
-                <br><br>
-                <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Name">
-                </div>
-                <center>
-                <select id="questions" multiple = "multiple">
-                  <option value="1-1">Option 1.1</option>
-                  <option value="1-2">Option 1.2</option>
-                  <option value="1-3">Option 1.3</option>
-                  <option value="1-4">Option 1.4</option>
-                  <option value="1-5">Option 1.5</option>
-                  <option value="1-6">Option 1.6</option>
-                  <option value="1-7">Option 1.7</option>
-                  <option value="1-8">Option 1.8</option>
-                  <option value="1-9">New Question</option>
-                </select>
-                </center>
-                <br>
-                <div id = "newQuestion" style="display:none">
-                  <br>
-                  <div class="form-group">
-                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Question">
-                        <span class="input-group-btn">
-                          <button class="btn btn-default" type="button" onClick="addQuest();">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                          </button>
-                        </span>
-                      </div><!-- /input-group -->
-                      <br>
-                      <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Type">
-                      </div>
-                  </div>
+              <pre>form = {{agency | json}}</pre>
+              <div ng-app="ServiceApp">
+                <div ng-controller="serviceCtrl">
+                <h3>Services: </h3>
+                    <!-- {{services}} -->
+                    <div class="checkbox" ng-repeat="service in services">
+                      <label>
+                        <input type="checkbox" id="{{service._id}}">{{service.name}}
+                      </label>
+                    </div>
+                  <!-- <button type ="reset" id ="btn-reset" class="btn btn-default">Reset</button> -->
                 </div>
               </div>
-              <br><br>
+
               <center>
                 <button type ="submit" id ="btn-submit" class="btn btn-success">Submit</button>
               </center>
@@ -138,81 +102,6 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $('#services').multiselect({
-          buttonText: function(options, select) {
-            if(options.length === 0) {
-              $("#newService").hide();
-              return 'No Service selected';
-            }
-            else {
-                var labels = [];
-                options.each(function() {
-                    if ($(this).attr('label') !== undefined) {
-                        labels.push($(this).attr('label'));
-                    }
-                    else {
-                        labels.push($(this).html());
-                    }
-                });
-                if(labels.indexOf("New Service") != -1) {
-                  //console.log("IN!");
-                  $("#newService").show();
-                }
-                else {
-                  $("#newService").hide();
-                }
 
-                if(options.length > 3) {
-                  return "Multiple Services selected";
-                }
-                return labels.join(', ');
-            }
-          },
-          dropRight: true,
-          maxHeight: 100
-          //enableClickableOptGroups: true
-      });
-      $('#questions').multiselect({
-          buttonText: function(options, select) {
-            if(options.length === 0) {
-              $("#newQuestion").hide();
-              return 'No Question selected';
-            }
-            else {
-                var labels = [];
-                options.each(function() {
-                    if ($(this).attr('label') !== undefined) {
-                        labels.push($(this).attr('label'));
-                    }
-                    else {
-                        labels.push($(this).html());
-                    }
-                });
-                if(labels.indexOf("New Question") != -1) {
-                  //console.log("IN!");
-                  $("#newQuestion").show();
-                }
-                else {
-                  $("#newQuestion").hide();
-                }
-
-                if(options.length > 3) {
-                  return "Multiple Questions selected";
-                }
-                return labels.join(', ');
-            }
-          },
-          dropRight: true,
-          maxHeight: 100
-          //enableClickableOptGroups: true
-      });
-    });
-    function addQuest() {
-      var newQ = document.getElementById('newQuestion');
-      newQ.innerHTML += '<br><div class="form-group"> <div class="input-group"> <input type="text" class="form-control" placeholder="Question"> <span class="input-group-btn"> <button class="btn btn-default" type="button" onClick="addQuest();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button> </span> </div><!-- /input-group --><br><div class="form-group"><input type="text" class="form-control" placeholder="Type"></div></div>';
-    }
-    </script>
   </body>
 </html>
