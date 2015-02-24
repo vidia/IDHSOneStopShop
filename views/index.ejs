@@ -134,17 +134,9 @@
 												<header>
 													<center><h2><%= agency.name %></h2></center>
 												</header>
-												<div id = "divshort_<%= agency.id%>" >
-													<%= agency.short %>
-													<a OnClick="btnShortDescription('<%= agency.id%>');">
-														[+]
-													</a>
-												</div>
+
 												<div id = "divfull_<%= agency.id%>" style="display:none">
 													<%= agency.description %>
-													<a OnClick="btnFullDescription('<%= agency.id%>');">
-														[-]
-													</a>
 												</div>
 
 												<div id = "services">
