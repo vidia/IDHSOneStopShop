@@ -23,7 +23,8 @@
     "winston": "*",
     "underscore": "*",
     "mongoose-deep-populate": "*",
-    "async": "*"
+    "async": "*",
+    "node-uuid" : "*"
   },
   "engines": {
     "node": "0.10.x",

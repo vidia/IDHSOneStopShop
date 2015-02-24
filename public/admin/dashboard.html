@@ -15,6 +15,10 @@
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
 
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.13/angular.js"></script>
+        <script src="/admin/js/app.js"></script>
+
   </head>
 
   <body>
@@ -68,12 +72,11 @@
           </div>
 
           <h2 class="sub-header">Current users</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
+          <div class="table-responsive" ng-app="AdminApp">
+            <table class="table table-striped" ng-controller="activeSurveyCtrl">
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>First Name, Last Name</th>
                   <th>Status</th>
                   <th></th>
                   <th></th>
@@ -81,21 +84,12 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
+                <tr ng-repeat="survey in surveys">
+                  <td>{{survey.surveyid}}</td>
+                  <td>{{survey.printed}}</td>
                   <td><button id = "print" type="button" class="btn btn-lg btn-primary">Print</button></td>
                   <td><button id = "finish" type="button" class="btn btn-lg btn-success">Finish</button></td>
-                  <td><button id = "delete" type="button" class="btn btn-lg btn-warning">Delete</button></td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td><button id = "print" type="button" class="btn btn-lg btn-primary">Print</button></td>
-                  <td><button id = "finish" type="button" class="btn btn-lg btn-success">Finish</button></td>
-                  <td><button id = "delete" type="button" class="btn btn-lg btn-warning">Delete</button></td>
+                  <td><button id = "delete" type="button" class="btn btn-lg btn-warning" ng-click="deleteSurvey(survey._id);">Delete</button></td>
                 </tr>
               </tbody>
             </table>

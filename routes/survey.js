@@ -11,7 +11,7 @@ var ejs = require('ejs');
 
 var router = express.Router();
 
-router.route("/").get( function(req, res, err) {
+router.route("/").get( function(req, res, err, json) {
   //Use query params to get a specific survey?
 
   var survey = new Survey();
@@ -41,6 +41,8 @@ router.route("/").get( function(req, res, err) {
 
       survey.survey.push(serviceEntry);
     }
+    var surveyid = require('node-uuid').v1().substring(0,5);
+    survey.surveyid = surveyid;
 
     survey.save(function(err) {
       if(err) {
@@ -51,7 +53,7 @@ router.route("/").get( function(req, res, err) {
     //TODO: Add user code.
     Survey.deepPopulate(survey, 'user survey.service survey.questions.question', function(err, survey) {
 
-      if(req.query.format === "json") {
+      if(json) {
         res.send(survey);
       } else {
         //logger.debug(agencies);
@@ -65,8 +67,30 @@ router.route("/").get( function(req, res, err) {
   });
 });
 
-
 var apiRouter = express.Router();
+
+
+apiRouter.route("/").get(function(req, res, err) {
+  //Use query params to get a specific survey?
+  Survey.find(function(err, surveys) {
+    if(err) {
+      res.send("Error retrieving surveys");
+    }
+
+    res.send(surveys);
+  });
+});
+
+apiRouter.route("/:id").delete( function(req, res, err) {
+  Survey.findOneAndRemove( { _id : req.params.id }, function(err) {
+    if(err) {
+      res.send({message: "Failed to remove object"});
+    }
+
+    res.send({message: "Success"});
+  });
+});
+
 
 apiRouter.route("/:id").post( function(req, res, err) {
   logger.debug("Hello");
@@ -81,7 +105,7 @@ apiRouter.route("/:id").post( function(req, res, err) {
 }
 */
 
-  Survey.findOne( { _id : req.params.id }, function(err, survey) {
+  Survey.findOne( { surveyid : req.params.id }, function(err, survey) {
     if (err) {
       res.send(err);
     }
@@ -111,13 +135,19 @@ apiRouter.route("/:id").post( function(req, res, err) {
       if(err) {
         res.send( { message : err } );
       }
-      else res.send( {message: "Survey answered correctly!"});
+      else {
+        survey.save(function(err) {
+          if(err) {
+            res.send({ "message" : "there was a problem saving the survey" } );
+          }
+          res.send({
+            message: "Survey answered correctly!"
+          });
+        });
+      }
     });
-
   });
-
 });
-
 
 module.exports = {
   survey : router,

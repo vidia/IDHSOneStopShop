@@ -48,6 +48,51 @@ app.factory('Questions', function ($http) {
 
 });
 
+app.factory('Surveys', function ($http) {
+
+  var surveyApi = {};
+
+  surveyApi.getSurveys = function(){
+    return $http({
+      method: "GET",
+      url: "/api/survey"
+    });
+  };
+
+  surveyApi.deleteSurvey = function(_id) {
+    return $http({
+      method: "DELETE",
+      url: "/api/survey/" + _id
+    });
+  };
+
+  return surveyApi;
+
+});
+
+
+app.controller('activeSurveyCtrl', function($scope, Surveys) {
+
+  Surveys.getSurveys().success(function(response) {
+    $scope.surveys = response;
+  });
+
+  $scope.deleteSurvey = function(_id) {
+    Surveys.deleteSurvey(_id).success(function(response) {
+
+      for(var i = 0; i < $scope.surveys.length; i++) {
+        if($scope.surveys[i]._id === _id) {
+          $scope.surveys.splice(i, 1);
+          break;
+        }
+      }
+
+    });
+  };
+
+});
+
+
 app.controller('surveyCtrl', function($scope, Questions) {
 
   Questions.getQuestions().success(function(response) {

@@ -22,13 +22,13 @@ var surveyEntrySchema = mongoose.Schema({
 
 var surveySchema = mongoose.Schema({
 
-    surveyid : Number,
+    surveyid : String,
     survey : [ surveyEntrySchema ],
     printed : { type: Boolean, default: false }
 
 });
 
-surveySchema.plugin(deepPopulate); 
+surveySchema.plugin(deepPopulate);
 // methods ======================
 
 // create the model for users and expose it to our app
