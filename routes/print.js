@@ -11,13 +11,11 @@ var ejs = require('ejs');
 
 var router = express.Router();
 
-router.route("/:id").get( function(req, res, err, json) {
+router.route("/:id").get( function(req, res, err) {
   //Use query params to get a specific survey?
-
-  var survey = new Survey();
-
-
-  Survey.find( {_id: req.params.id}, function(err, survey) {
+  logger.info("Routing with ID");
+  
+  Survey.find( {_id : req.params.id}, function(err, survey) {
     if(err) {
       res.send("Survey does not exist");
     }
