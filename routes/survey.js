@@ -11,7 +11,7 @@ var ejs = require('ejs');
 
 var router = express.Router();
 
-router.route("/").get( function(req, res, err, json) {
+router.route("/").get( function(req, res, err) {
   //Use query params to get a specific survey?
 
   var survey = new Survey();
@@ -53,16 +53,14 @@ router.route("/").get( function(req, res, err, json) {
     //TODO: Add user code.
     Survey.deepPopulate(survey, 'user survey.service survey.questions.question', function(err, survey) {
 
-      if(json) {
-        res.send(survey);
-      } else {
+
         //logger.debug(agencies);
         res.render("survey",
           {
             survey : survey
           }
         );
-      }
+
     });
   });
 });
